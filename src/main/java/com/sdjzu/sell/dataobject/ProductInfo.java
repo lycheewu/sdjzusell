@@ -4,7 +4,6 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
@@ -12,6 +11,7 @@ import java.util.Date;
 
 /**
  * 商品
+ *
  * @author lychee
  * @date 2020/1/8 21:14
  */
@@ -25,8 +25,7 @@ public class ProductInfo {
      * 商品ID
      */
     @Id
-    @GeneratedValue
-    private Integer productId;
+    private String productId;
 
     /**
      * 商品名称

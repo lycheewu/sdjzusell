@@ -17,23 +17,23 @@ import javax.annotation.Resource;
 @SpringBootTest
 @Component
 @Repository
-class ProductCategoryServiceImplTest {
+public class ProductCategoryServiceImplTest {
 
     @Resource
     private ProductCategoryServiceImpl productCategoryService;
     @Test
-    void findById() {
+    public void findById() {
     }
 
     @Test
-    void findAll() {
+    public void findAll() {
     }
 
     @Test
-    void findByCategoryTypeIn() {
+    public void findByCategoryTypeIn() {
     }
 
     @Test
-    void save() {
+    public void save() {
     }
 }

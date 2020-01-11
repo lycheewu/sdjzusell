@@ -12,11 +12,11 @@
     <!-- ======================================== Appender定义 ======================================== -->
     <!-- 控制台输出，用于本地开发 -->
     <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
-       <layout class="ch.qos.logback.classic.PatternLayout">
-           <pattern>
-               ${LOG_PATTERN}
-           </pattern>
-       </layout>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                ${LOG_PATTERN}
+            </pattern>
+        </layout>
     </appender>
 
     <!--配置 生成日志文件-->
