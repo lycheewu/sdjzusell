@@ -31,7 +31,7 @@ public class OrderServiceImplTest {
 
     private final String BUYER_OPENID = "1101110";
 
-    private final String ORDER_ID = "1497183332311989948";
+    private final String ORDER_ID = "1578912904110919998";
 
     @Test
     public void create() throws Exception {
@@ -48,12 +48,12 @@ public class OrderServiceImplTest {
         o1.setProductId("123456");
         o1.setProductQuantity(2);
 
-//        OrderDetail o2 = new OrderDetail();
-//        o2.setProductId("123");
-//        o2.setProductQuantity(3);
+        OrderDetail o2 = new OrderDetail();
+        o2.setProductId("123");
+        o2.setProductQuantity(3);
 //
         orderDetailList.add(o1);
-//        orderDetailList.add(o2);
+        orderDetailList.add(o2);
 
         orderDTO.setOrderDetailList(orderDetailList);
 

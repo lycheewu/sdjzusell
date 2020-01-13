@@ -46,8 +46,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
-
+        for (CartDTO cartDTO : cartDTOList) {
+            ProductInfo productInfo = productInfoRepo.findById(cartDTO.getProductId()).orElse(null);
+            if (Objects.isNull(productInfo)) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            //库存 + 购物车的数量
+            Integer result = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            //把增加的结果再保存在数据库中
+            productInfo.setProductStock(result);
+            productInfoRepo.save(productInfo);
+        }
     }
 
     @Override
