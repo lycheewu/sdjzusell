@@ -7,6 +7,9 @@ import com.sdjzu.sell.dataobject.ProductCategory;
 import com.sdjzu.sell.dataobject.ProductInfo;
 import com.sdjzu.sell.service.ProductCategoryService;
 import com.sdjzu.sell.service.ProductService;
+import com.sdjzu.sell.utils.ResultVOUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
  * @date 2020/1/10 16:44
  */
 @RestController
+@Api(value = "商品管理")
 @RequestMapping("/buyer/product")
 public class BuyerProductController {
 
@@ -34,6 +37,7 @@ public class BuyerProductController {
     @Resource
     private ProductCategoryService productCategoryService;
 
+    @ApiOperation(value = "查询商品")
     @GetMapping(value = "/list")
     public ResultVO list() {
         //1.查询所有的上架的商品
@@ -72,12 +76,6 @@ public class BuyerProductController {
             productVOS.add(productVO);
         }
 
-        ResultVO resultVO = new ResultVO();
-        resultVO.setCode(0);
-        resultVO.setMsg("success");
-
-        resultVO.setData(Arrays.asList(productVOS));
-
-        return resultVO;
+        return ResultVOUtil.success(productVOS);
     }
 }

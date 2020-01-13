@@ -1,5 +1,6 @@
 package com.sdjzu.sell.dataobject;
 
+import com.sdjzu.sell.enums.ProductStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -55,7 +56,7 @@ public class ProductInfo {
     /**
      * .状态，0正常 1下架
      */
-    private Integer productStatus;
+    private Integer productStatus=ProductStatusEnum.UP.getCode();
 
     /**
      * 类目编号

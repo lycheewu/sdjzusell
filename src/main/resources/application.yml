@@ -8,7 +8,7 @@ spring:
     show-sql: true
 
 server:
-  port: 304
+  port: 3004
   servlet:
     context-path: /sell
 
