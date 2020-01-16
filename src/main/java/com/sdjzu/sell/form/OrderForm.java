@@ -37,7 +37,8 @@ public class OrderForm {
     /**
      * 购物车不能为空
      */
-    @NotEmpty(message = "购物车不能为空")
+    @NotEmpty(message = "购物车不能为空")//这是个字符
+    //todo：优化成list
     private String items;
 
 

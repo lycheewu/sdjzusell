@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2020/1/11 20:08
  */
 public interface OrderMasterRepository extends JpaRepository<OrderMaster,String> {
+    //todo:jpa分页
     Page<OrderMaster> findByBuyerOpenid(String buyerOpenid, Pageable pageable);
 
 

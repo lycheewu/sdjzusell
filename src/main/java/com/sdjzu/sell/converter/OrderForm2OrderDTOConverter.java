@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * orderForm转换成OrderDTO
  * @author lychee
  * @date 2020/1/13 21:03
  */
@@ -22,6 +23,7 @@ public class OrderForm2OrderDTOConverter {
         Gson gson = new Gson();
         OrderDTO orderDTO = new OrderDTO();
 
+//        基本属性的转换，因为属性名不对应，不能使用BeanUtils.Properties()
         orderDTO.setBuyerName(orderForm.getName());
         orderDTO.setBuyerPhone(orderForm.getPhone());
         orderDTO.setBuyerAddress(orderForm.getAddress());

@@ -1,12 +1,11 @@
 package com.sdjzu.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sdjzu.sell.dataobject.OrderDetail;
-import com.sdjzu.sell.dataobject.OrderMaster;
 import com.sdjzu.sell.enums.OrderStatusEnum;
 import com.sdjzu.sell.enums.PayStatusEnum;
 import com.sdjzu.sell.utils.serializer.Data2LongSerializer;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +19,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-//@JsonSerialize(include = JsonSerialize.)
+//@JsonInclude(JsonInclude.Include.NON_NULL)//当值为null时不返回
 public class OrderDTO {
     /**
      * 订单ID
@@ -55,12 +54,12 @@ public class OrderDTO {
     /**
      * 订单状态 默认为新下单 0新订单，1订单完结，2取消订单
      */
-    private OrderStatusEnum orderStatus;
+    private Integer orderStatus;
 
     /**
      * 支付状态，默认为 0等待支付
      */
-    private PayStatusEnum payStatus;
+    private Integer payStatus;
 
     /**
      * 创建时间

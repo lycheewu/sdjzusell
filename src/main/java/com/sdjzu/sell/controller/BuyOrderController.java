@@ -6,6 +6,7 @@ import com.sdjzu.sell.dto.OrderDTO;
 import com.sdjzu.sell.enums.ResultEnum;
 import com.sdjzu.sell.exception.SellException;
 import com.sdjzu.sell.form.OrderForm;
+import com.sdjzu.sell.service.BuyerService;
 import com.sdjzu.sell.service.OrderService;
 import com.sdjzu.sell.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,10 +34,11 @@ public class BuyOrderController {
     @Resource
     private OrderService orderService;
 
-//    @Resource
-//    private BuyerService buyerService;
+    @Resource
+    private BuyerService buyerService;
 
     //创建订单
+    //todo:集成swagger
     @PostMapping("/create")
     public ResultVO<Map<String, String>> create(@RequestBody OrderForm orderForm,
                                                 BindingResult bindingResult) {
@@ -71,6 +74,7 @@ public class BuyOrderController {
         PageRequest request = PageRequest.of(page, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(openid, request);
 
+        orderDTOPage.getTotalElements();//返回的总数
         return ResultVOUtil.success(orderDTOPage.getContent());
     }
 
@@ -79,16 +83,18 @@ public class BuyOrderController {
     @GetMapping("/detail")
     public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
                                      @RequestParam("orderId") String orderId) {
-//        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
-//        return ResultVOUtil.success(orderDTO);
-        return null;
+        //todo:不安全的做法，待改进
+//        OrderDTO orderDTO=orderService.findById(openid);
+        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
+        return ResultVOUtil.success(orderDTO);
     }
 
     //取消订单
     @PostMapping("/cancel")
     public ResultVO cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId) {
-//        buyerService.cancelOrder(openid, orderId);
+//        todo：不安全的做法，改进
+        buyerService.cancelOrder(openid, orderId);
         return ResultVOUtil.success();
     }
 }
